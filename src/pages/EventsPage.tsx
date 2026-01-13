@@ -45,10 +45,10 @@ export default function EventsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Developer Events</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Developer Events</h1>
         <a
           href="/events/create"
-          className="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-lg transition-colors"
+          className="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-lg transition-colors font-medium"
         >
           Create Event
         </a>
@@ -58,33 +58,40 @@ export default function EventsPage() {
         {events.map((event) => (
           <div
             key={event.id}
-            className="bg-slate-800 border border-slate-700 rounded-lg p-6 hover:border-cyan-500 transition-colors"
+            className="group bg-white border border-gray-200 rounded-lg p-6 
+                     hover:border-cyan-500 hover:shadow-lg transition-all duration-300
+                     hover:-translate-y-1"
           >
-            <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
-            <p className="text-slate-300 mb-4">{event.description}</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-cyan-700 transition-colors">
+              {event.title}
+            </h3>
+            <p className="text-gray-600 mb-4">{event.description}</p>
             
             <div className="space-y-2 mb-4">
-              <div className="flex items-center text-sm text-slate-400">
+              <div className="flex items-center text-sm text-gray-500">
                 <Calendar className="w-4 h-4 mr-2" />
                 {event.date} at {event.time}
               </div>
-              <div className="flex items-center text-sm text-slate-400">
+              <div className="flex items-center text-sm text-gray-500">
                 <MapPin className="w-4 h-4 mr-2" />
                 {event.location}
               </div>
-              <div className="flex items-center text-sm text-slate-400">
+              <div className="flex items-center text-sm text-gray-500">
                 <Users className="w-4 h-4 mr-2" />
-                {event.attendees}/{event.maxAttendees} attendees
+                <span className="font-medium text-gray-700">{event.attendees}</span>
+                <span className="mx-1 text-gray-400">/</span>
+                <span className="text-gray-600">{event.maxAttendees} attendees</span>
               </div>
             </div>
 
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-slate-400">by {event.organizer}</span>
+            <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+              <span className="text-sm text-gray-500">by {event.organizer}</span>
               <a
                 href={`/events/${event.id}`}
-                className="text-cyan-400 hover:text-cyan-300 text-sm font-medium"
+                className="text-cyan-600 hover:text-cyan-700 text-sm font-medium 
+                         group-hover:underline transition-colors"
               >
-                View Details
+                View Details →
               </a>
             </div>
           </div>
